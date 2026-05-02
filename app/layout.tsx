@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import Header from "@/components/header";
+import { Toaster } from "@/components/ui/sonner";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +30,41 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        inter.variable,
+      )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Header />
+        {children}
+
+        <footer className="border-t py-6 text-center text-xs text-muted-foreground">
+          Data from{" "}
+          <a
+            href="https://restcountries.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 hover:text-foreground"
+          >
+            restcountries.com
+          </a>{" "}
+          · Reviews via{" "}
+          <a
+            href="https://jsonplaceholder.typicode.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 hover:text-foreground"
+          >
+            jsonplaceholder.typicode.com
+          </a>
+        </footer>
+        <Toaster />
+      </body>
     </html>
   );
 }
