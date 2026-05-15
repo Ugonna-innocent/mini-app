@@ -12,7 +12,7 @@ export const getCountryByCode = async ({ code }: Payload) => {
   const response = await getRequest<GetCountryByCodeResponse>({
     api: restCountriesApi,
     url,
-    successCondition: (res) => res.length === 0,
+    successCondition: (data) => data.length > 0,
   });
 
   return response.data;
