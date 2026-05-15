@@ -35,7 +35,6 @@ export function ControlledField<T extends FieldValues, TName extends Path<T>>({
   label,
   description,
   children,
-  required = true,
   alignItem = "start",
 }: ControlledFieldProps<T, TName>) {
   return (
@@ -47,7 +46,6 @@ export function ControlledField<T extends FieldValues, TName extends Path<T>>({
           {label && (
             <FieldLabel
               htmlFor={name}
-              required={required}
               className={cn(alignItem === "center" && "justify-center")}
             >
               {label}

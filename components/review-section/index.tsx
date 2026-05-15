@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Star, MessageSquare } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { LocalReview } from "@/types/country";
-import ReviewForm from "../review-form";
 
 interface ReviewSectionProps {
   countryCode: string;
@@ -77,13 +76,6 @@ export default function ReviewSection({
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Form */}
-        <div>
-          <ReviewForm
-            countryCode={countryCode}
-            countryName={countryName}
-            onReviewAdded={handleNewReview}
-          />
-        </div>
 
         {/* Review list */}
         <div className="space-y-4">

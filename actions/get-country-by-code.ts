@@ -1,4 +1,4 @@
-import { getRequest } from "@/lib/http";
+import { getRequest } from "@/lib/requests-handlers";
 import { restCountriesApi } from "@/lib/request-client";
 import { GetCountryByCodeResponse } from "@/types/country";
 
@@ -7,12 +7,12 @@ type Payload = {
 };
 
 export const getCountryByCode = async ({ code }: Payload) => {
-  const api = await restCountriesApi();
   const url = `/alpha/${code}`;
 
   const response = await getRequest<GetCountryByCodeResponse>({
-    api,
+    api: restCountriesApi,
     url,
+    successCondition: (res) => res.length === 0,
   });
 
   return response.data;

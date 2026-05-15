@@ -1,27 +1,25 @@
 import axios from "axios";
 
-export async function restCountriesApi() {
+const createApiInstance = (baseURL: string) => {
   const api = axios.create({
-    baseURL: "https://restcountries.com/v3.1",
+    baseURL,
   });
 
   api.interceptors.response.use(
-    (res) => res,
+    (res) => {
+      // All logic
+      return res;
+    },
     async (error) => Promise.reject(error),
   );
 
   return api;
-}
+};
 
-export async function jsonPlaceholderApi() {
-  const api = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com",
-  });
+export const restCountriesApi = createApiInstance(
+  "https://restcountries.com/v3.1",
+);
 
-  api.interceptors.response.use(
-    (res) => res,
-    async (error) => Promise.reject(error),
-  );
-
-  return api;
-}
+export const jsonPlaceholderApi = createApiInstance(
+  "https://jsonplaceholder.typicode.com",
+);

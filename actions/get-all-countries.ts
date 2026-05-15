@@ -1,4 +1,4 @@
-import { getRequest } from "@/lib/http";
+import { getRequest } from "@/lib/requests-handlers";
 import { restCountriesApi } from "@/lib/request-client";
 import { GetAllCountriesResponse } from "@/types/country";
 
@@ -16,12 +16,11 @@ const LIST_FIELDS = [
 ].join(",");
 
 export const getCountries = async () => {
-  const api = await restCountriesApi();
   const url = "/all";
 
   const response = await getRequest<GetAllCountriesResponse>({
-    api,
     url,
+    api: restCountriesApi,
     params: { fields: LIST_FIELDS },
   });
 

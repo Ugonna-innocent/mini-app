@@ -6,6 +6,7 @@ export const action = createSafeActionClient({
     if (e instanceof Error) {
       return e.message;
     }
+
     return "Something went wrong while processing the request.";
   },
 });
